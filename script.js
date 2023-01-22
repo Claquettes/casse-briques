@@ -102,5 +102,5 @@ function game (){
     
 }
 
-// a remplacer a terme, quand il y aura un bouton start
+// a remplacer a terme, quand il y aura un bouton start, car on ne voudras pas que la séquence de jeu démarre dès le chargement de la page
 gameloop();
