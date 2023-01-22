@@ -72,11 +72,23 @@ function checkBordersCollision() {
         ball.speedY = -ball.speedY;
     }
 }
-var maxSpeed = 1;
+
+function checkBrickCollision() { //on check la collision avec les briques
+    for (var i = 0; i < bricks.length; i++) {
+        if ((ball.x > bricks[i].x) && (ball.x < bricks[i].x + bricks[i].width )&& (ball.y > bricks[i].y )&& (ball.y < bricks[i].y + bricks[i].height)) {
+            console.log("collision")
+            ball.speedY = -ball.speedY;
+            bricks.splice(i, 1);
+
+        }
+    }
+}
+
+var maxSpeed = 5;
 
 function updateBallPosition() {
-    ball.x += ball.speedX/20;
-    ball.y += ball.speedY/20;
+    ball.x += ball.speedX/30;
+    ball.y += ball.speedY/30;
     if (ball.speedX > maxSpeed) {
         ball.speedX = maxSpeed;
     }
@@ -123,6 +135,7 @@ function draw() {
     updateBallPosition();
     checkPaddleCollision();
     checkBordersCollision();
+    checkBrickCollision();
     checkGameOver();
 
     renderBall();
