@@ -21,7 +21,8 @@ var paddle = {
 };
 
 var bricks = [];
-for (var i = 0; i < 5; i++) {
+var numberOfBricks = 13;
+for (var i = 0; i < numberOfBricks; i++) {
     bricks.push({
         width: 50,
         height: 20,
@@ -79,12 +80,13 @@ function checkBrickCollision() { //on check la collision avec les briques
             console.log("collision")
             ball.speedY = -ball.speedY;
             bricks.splice(i, 1);
+            console.log(ball.speedX, ball.speedY);
 
         }
     }
 }
 
-var maxSpeed = 5;
+var maxSpeed = 2;
 
 function updateBallPosition() {
     ball.x += ball.speedX/30;
@@ -145,8 +147,8 @@ function draw() {
 }
 
 function gameloop() {
-    setInterval(game, 100)
-    setInterval(paddleControl, 200)
+    setInterval(game, 75)
+    setInterval(paddleControl, 100)
 }
 
 function game (){
