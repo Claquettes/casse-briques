@@ -6,8 +6,8 @@ var ball = {
     x: canvas.width / 2,
     y: canvas.height / 2,
     radius: 10,
-    speedX: 5,
-    speedY: 5,
+    speedX: 1,
+    speedY: 1,
     color: "blue"
 };
 
@@ -17,7 +17,7 @@ var paddle = {
     height: 10,
     x: (canvas.width - 100) / 2,
     y: canvas.height - 20,
-    color: "black"
+    color: "white"
 };
 
 var bricks = [];
@@ -53,19 +53,14 @@ function renderBricks() {
     }
 }
 
-document.addEventListener("keydown", function(event) {
-    if (event.keyCode === 37) {
-        paddle.x -= 10;
-    }
-    else if (event.keyCode === 39) {
-        paddle.x += 10;
-    }
-});
-
 function checkPaddleCollision() {
-    if ((ball.y + ball.radius > paddle.y) && (ball.x > paddle.x) && (ball.x < paddle.x + paddle.width)) {
-        ball.speedX = -ball.speedX;
+    if (ball.y + ball.radius > paddle.y &&
+        ball.x > paddle.x &&
+        ball.x < paddle.x + paddle.width) {
         ball.speedY = -ball.speedY;
+        var paddleCenter = paddle.x + paddle.width / 2;
+        var ballDistFromPaddleCenter = ball.x - paddleCenter;
+        ball.speedX = ballDistFromPaddleCenter * 0.35;
     }
 }
 
@@ -77,15 +72,58 @@ function checkBordersCollision() {
         ball.speedY = -ball.speedY;
     }
 }
+var maxSpeed = 1;
+
+function updateBallPosition() {
+    ball.x += ball.speedX/20;
+    ball.y += ball.speedY/20;
+    if (ball.speedX > maxSpeed) {
+        ball.speedX = maxSpeed;
+    }
+    if (ball.speedX < -maxSpeed) {
+        ball.speedX = -maxSpeed;
+    }
+    if (ball.speedY > maxSpeed) {
+        ball.speedY = maxSpeed;
+    }
+    if (ball.speedY < -maxSpeed) {
+        ball.speedY = -maxSpeed;
+    }
+}
+
+function checkGameOver() {
+    if (ball.y - ball.radius > canvas.height) {
+        alert("Game Over!");
+        // a remplacer par un bouton restart
+    }
+}
+
+
+var gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+gradient.addColorStop(0, "purple");
+gradient.addColorStop(1, "white");
+ctx.fillStyle = gradient;
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+function paddleControl() {
+    document.addEventListener("keydown", function(event) {
+        if (event.keyCode === 37) {
+            paddle.x -= 1;
+        }
+        else if (event.keyCode === 39) {
+            paddle.x += 1;
+        }
+    });
+}
 
 
 function draw() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ball.x += parseInt(ball.speedX / 12);
-    ball.y += ball.speedY / 10;
+    updateBallPosition();
     checkPaddleCollision();
     checkBordersCollision();
+    checkGameOver();
 
     renderBall();
     renderPaddle();
@@ -95,10 +133,12 @@ function draw() {
 
 function gameloop() {
     setInterval(game, 100)
+    setInterval(paddleControl, 200)
 }
 
 function game (){
     draw();
+    
     
 }
 
