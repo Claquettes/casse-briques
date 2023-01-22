@@ -11,7 +11,6 @@ var ball = {
     color: "blue"
 };
 
-
 var paddle = {
     width: 100,
     height: 10,
@@ -19,6 +18,7 @@ var paddle = {
     y: canvas.height - 20,
     color: "white"
 };
+
 //génération des briques
 var rows = 5;
 var columns = 13;
@@ -51,7 +51,6 @@ function renderBall() {
     ctx.fillStyle = ball.color;
     ctx.fill();
 }
-
 
 function renderPaddle() {
     ctx.fillStyle = paddle.color;
@@ -134,7 +133,6 @@ function paddleControl() {
     });
 }
 
-
 function draw() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -158,8 +156,6 @@ function gameloop() {
 
 function game (){
     draw();
-    
-    
 }
 
 // a remplacer a terme, quand il y aura un bouton start, car on ne voudras pas que la séquence de jeu démarre dès le chargement de la page
