@@ -6,8 +6,8 @@ var ball = {
     x: canvas.width / 2,
     y: canvas.height / 2,
     radius: 10,
-    speedX: 1,
-    speedY: 1,
+    speedX: 1.5,
+    speedY: 1.5,
     color: "blue"
 };
 
@@ -19,20 +19,32 @@ var paddle = {
     y: canvas.height - 20,
     color: "white"
 };
-
+//génération des briques
+var rows = 5;
+var columns = 13;
+var brickWidth = 50;
+var brickHeight = 20;
 var bricks = [];
-var numberOfBricks = 13;
-for (var i = 0; i < numberOfBricks; i++) {
-    bricks.push({
-        width: 50,
-        height: 20,
-        x: i * 60 + 10,
-        y: 50,
-        color: "orange"
-    });
+var durability = 2 ; //il faudrait que la durabilité soit liée à la couleur de la brique
+
+for (var r = 0; r < rows; r++) {
+    for (var c = 0; c < columns; c++) {
+        bricks.push({
+
+            x: c * (brickWidth + 10) + 10,
+            y: r * (brickHeight + 10) + 50,
+            width: brickWidth,
+            height: brickHeight,
+            color: "orange",
+            visible: true,
+            //on ajoute juste ici la durabilité
+            durability: durability
+            
+        });
+    }
 }
 
-
+//fin de la génération des briques
 function renderBall() {
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI);
@@ -77,7 +89,6 @@ function checkBordersCollision() {
 function checkBrickCollision() { //on check la collision avec les briques
     for (var i = 0; i < bricks.length; i++) {
         if ((ball.x > bricks[i].x) && (ball.x < bricks[i].x + bricks[i].width )&& (ball.y > bricks[i].y )&& (ball.y < bricks[i].y + bricks[i].height)) {
-            console.log("collision")
             ball.speedY = -ball.speedY;
             bricks.splice(i, 1);
             console.log(ball.speedX, ball.speedY);
@@ -112,13 +123,6 @@ function checkGameOver() {
     }
 }
 
-
-var gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-gradient.addColorStop(0, "purple");
-gradient.addColorStop(1, "white");
-ctx.fillStyle = gradient;
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-
 function paddleControl() {
     document.addEventListener("keydown", function(event) {
         if (event.keyCode === 37) {
@@ -143,11 +147,12 @@ function draw() {
     renderBall();
     renderPaddle();
     renderBricks();
+    //on envoie 5 fois par seconde la 
     requestAnimationFrame(draw);
 }
 
 function gameloop() {
-    setInterval(game, 75)
+    setInterval(game, 500)
     setInterval(paddleControl, 100)
 }
 
