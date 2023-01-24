@@ -45,6 +45,30 @@ for (var r = 0; r < rows; r++) {
 }
 
 //fin de la génération des briques
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+
+var rightPressed = false;
+var leftPressed = false;
+
+function keyDownHandler(e) {
+    if (e.keyCode == 39) {
+        rightPressed = true;
+    }
+    else if (e.keyCode == 37) {
+        leftPressed = true;
+    }
+}
+
+function keyUpHandler(e) {
+    if (e.keyCode == 39) {
+        rightPressed = false;
+    }
+    else if (e.keyCode == 37) {
+        leftPressed = false;
+    }
+}
+
 function renderBall() {
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI);
@@ -72,7 +96,7 @@ function checkPaddleCollision() {
         ball.speedY = -ball.speedY;
         var paddleCenter = paddle.x + paddle.width / 2;
         var ballDistFromPaddleCenter = ball.x - paddleCenter;
-        ball.speedX = ballDistFromPaddleCenter * 0.35;
+        ball.speedX = ballDistFromPaddleCenter * 0.25;
     }
 }
 
@@ -96,11 +120,11 @@ function checkBrickCollision() { //on check la collision avec les briques
     }
 }
 
-var maxSpeed = 2;
+var maxSpeed = 7;
 
 function updateBallPosition() {
-    ball.x += ball.speedX/30;
-    ball.y += ball.speedY/30;
+    ball.x += ball.speedX;
+    ball.y += ball.speedY;
     if (ball.speedX > maxSpeed) {
         ball.speedX = maxSpeed;
     }
@@ -122,41 +146,51 @@ function checkGameOver() {
     }
 }
 
-function paddleControl() {
-    document.addEventListener("keydown", function(event) {
-        if (event.keyCode === 37) {
-            paddle.x -= 1;
-        }
-        else if (event.keyCode === 39) {
-            paddle.x += 1;
-        }
-    });
-}
-
-function draw() {
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+function update(dt) {
     updateBallPosition();
     checkPaddleCollision();
     checkBordersCollision();
     checkBrickCollision();
     checkGameOver();
-
+    updatePad(dt);
+}
+function render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     renderBall();
     renderPaddle();
     renderBricks();
-    //on envoie 5 fois par seconde la 
-    requestAnimationFrame(draw);
 }
 
-function gameloop() {
-    setInterval(game, 500)
-    setInterval(paddleControl, 100)
+const paddleSpeed = 5; // pixels per second
+
+function updatePad(dt) {
+    dt= dt*100;
+    if (rightPressed) {
+        paddle.x += paddleSpeed * dt;
+    } else if (leftPressed) {
+        paddle.x -= paddleSpeed * dt;
+    }
 }
 
-function game (){
-    draw();
+var lastTime;
+var timeStep = 1000/60; // 60fps
+
+function fixedUpdate() {
+    var currentTime = Date.now();
+    var dt = (currentTime - lastTime) / 1000; // time in seconds
+    while (dt > timeStep) {
+        update(timeStep); // update the game state
+        dt -= timeStep;
+    }
+    update(dt); // update the game state
+    render(); // render the game
+    lastTime = currentTime;
+    requestAnimationFrame(fixedUpdate);
 }
 
-// a remplacer a terme, quand il y aura un bouton start, car on ne voudras pas que la séquence de jeu démarre dès le chargement de la page
-gameloop();
+function start() {
+    lastTime = Date.now();
+    requestAnimationFrame(fixedUpdate);
+}
+
+start();
