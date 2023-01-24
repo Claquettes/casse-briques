@@ -3,8 +3,14 @@ document.addEventListener("keyup", keyUpHandler, false);
 
 var canvas = document.getElementById("game");
 var ctx = canvas.getContext("2d");
-
+//VARIABLES
+var rightPressed = false;
+var leftPressed = false;
 const paddleSpeed = 5; // pixels per second
+var lastTime;
+var timeStep = 1000/60; // 60fps
+var maxSpeed = 100;
+
 
 var ball = {
     x: canvas.width / 2,
@@ -61,11 +67,6 @@ function colorBricks() {
     }
 }
 //fin de la génération des briques
-
-
-var rightPressed = false;
-var leftPressed = false;
-
 function keyDownHandler(e) {
     if (e.keyCode == 39) {
         rightPressed = true;
@@ -146,8 +147,6 @@ function checkBrickCollision() { //on check la collision avec les briques
     }
 }
 
-var maxSpeed = 100;
-
 function updateBallPosition() {
     ball.x += ball.speedX;
     ball.y += ball.speedY;
@@ -195,9 +194,6 @@ function updatePad(dt) {
         paddle.x -= paddleSpeed * dt;
     }
 }
-
-var lastTime;
-var timeStep = 1000/60; // 60fps
 
 function fixedUpdate() {
     var currentTime = Date.now();
