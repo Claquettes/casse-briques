@@ -1,3 +1,5 @@
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
 
 var canvas = document.getElementById("game");
 var ctx = canvas.getContext("2d");
@@ -6,8 +8,8 @@ var ball = {
     x: canvas.width / 2,
     y: canvas.height / 2,
     radius: 10,
-    speedX: 1.5,
-    speedY: 1.5,
+    speedX: 2.5,
+    speedY: 2.5,
     color: "blue"
 };
 
@@ -38,15 +40,13 @@ for (var r = 0; r < rows; r++) {
             color: "orange",
             visible: true,
             //on ajoute juste ici la durabilité
-            durability: durability
-            
+            durability: durability,
         });
     }
 }
 
 //fin de la génération des briques
-document.addEventListener("keydown", keyDownHandler, false);
-document.addEventListener("keyup", keyUpHandler, false);
+
 
 var rightPressed = false;
 var leftPressed = false;
@@ -107,20 +107,32 @@ function checkBordersCollision() {
     if (ball.y - ball.radius < 0) {
         ball.speedY = -ball.speedY;
     }
+    //on check la collision du pad avec les bords du canvas
+    if (paddle.x < 0) {
+        paddle.x = 0;
+    }
+    if (paddle.x + paddle.width > canvas.width) {
+        paddle.x = canvas.width - paddle.width;
+    }
 }
+
 
 function checkBrickCollision() { //on check la collision avec les briques
     for (var i = 0; i < bricks.length; i++) {
         if ((ball.x > bricks[i].x) && (ball.x < bricks[i].x + bricks[i].width )&& (ball.y > bricks[i].y )&& (ball.y < bricks[i].y + bricks[i].height)) {
             ball.speedY = -ball.speedY;
+            //on diminue la durabilité de la brique
+            bricks[i].durability -= 1;
+            bricks[i].color = "red";    
+            //si la durabilité est à 0, on la supprime
+            if (bricks[i].durability == 0) {
             bricks.splice(i, 1);
-            console.log(ball.speedX, ball.speedY);
-
+            }
         }
     }
 }
 
-var maxSpeed = 7;
+var maxSpeed = 100;
 
 function updateBallPosition() {
     ball.x += ball.speedX;
