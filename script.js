@@ -9,7 +9,7 @@ var leftPressed = false;
 const paddleSpeed = 5; // pixels per second
 var lastTime;
 var timeStep = 1000/60; // 60fps
-var maxSpeed = 100;
+var maxSpeed = 200;
 
 var ball = {
     x: canvas.width / 2,
@@ -37,18 +37,40 @@ var bricks = [];
 
 for (var r = 0; r < rows; r++) {
     for (var c = 0; c < columns; c++) {
-        bricks.push({
-            color: "red",
-            x: c * (brickWidth + 10) + 10,
-            y: r * (brickHeight + 10) + 50,
-            width: brickWidth,
-            height: brickHeight,
-            visible: true,
-            durability: Math.floor(Math.random() * 3) + 1,
-
-            color: "green"
-            
-        });
+        if (r == 0 || r == rows - 1 || c == 0 || c == columns - 1 ) { //il faudrait que le code soit plus clean, mais je n'ai pas le temps de le faire
+            bricks.push({
+                color: "red",
+                x: c * (brickWidth + 10) + 10,
+                y: r * (brickHeight + 10) + 50,
+                width: brickWidth,
+                height: brickHeight,
+                visible: true,
+                durability: 3
+            });
+        }
+        else if(r == 1 || r == rows - 2 || c == 1 || c == columns - 2) {
+            bricks.push({
+                color: "red",
+                x: c * (brickWidth + 10) + 10,
+                y: r * (brickHeight + 10) + 50,
+                width: brickWidth,
+                height: brickHeight,
+                visible: true,
+                durability: 2
+            });
+        }
+        else {
+            bricks.push({
+                color: "red",
+                x: c * (brickWidth + 10) + 10,
+                y: r * (brickHeight + 10) + 50,
+                width: brickWidth,
+                height: brickHeight,
+                visible: true,
+                durability: 1
+            });
+        }
+        
     }
 }
 
@@ -112,7 +134,7 @@ function checkPaddleCollision() {
         ball.speedY = -ball.speedY;
         var paddleCenter = paddle.x + paddle.width / 2;
         var ballDistFromPaddleCenter = ball.x - paddleCenter;
-        ball.speedX = ballDistFromPaddleCenter * 0.1;
+        ball.speedX = ballDistFromPaddleCenter * 0.15;
     }
 }
 
@@ -147,8 +169,8 @@ function checkBrickCollision() { //on check la collision avec les briques
 }
 
 function updateBallPosition() {
-    ball.x += ball.speedX;
-    ball.y += ball.speedY;
+    ball.x += ball.speedX + 0.1;
+    ball.y += ball.speedY + 0.1;
     if (ball.speedX > maxSpeed) {
         ball.speedX = maxSpeed;
     }
