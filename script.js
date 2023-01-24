@@ -11,7 +11,6 @@ var lastTime;
 var timeStep = 1000/60; // 60fps
 var maxSpeed = 100;
 
-
 var ball = {
     x: canvas.width / 2,
     y: canvas.height / 2,
