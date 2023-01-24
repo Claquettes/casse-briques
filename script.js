@@ -4,6 +4,8 @@ document.addEventListener("keyup", keyUpHandler, false);
 var canvas = document.getElementById("game");
 var ctx = canvas.getContext("2d");
 
+const paddleSpeed = 5; // pixels per second
+
 var ball = {
     x: canvas.width / 2,
     y: canvas.height / 2,
@@ -27,24 +29,37 @@ var columns = 13;
 var brickWidth = 50;
 var brickHeight = 20;
 var bricks = [];
-var durability = 2 ; //il faudrait que la durabilité soit liée à la couleur de la brique
 
 for (var r = 0; r < rows; r++) {
     for (var c = 0; c < columns; c++) {
         bricks.push({
-
+            color: "red",
             x: c * (brickWidth + 10) + 10,
             y: r * (brickHeight + 10) + 50,
             width: brickWidth,
             height: brickHeight,
-            color: "orange",
             visible: true,
-            //on ajoute juste ici la durabilité
-            durability: durability,
+            durability: Math.floor(Math.random() * 3) + 1,
+
+            color: "green"
+            
         });
     }
 }
 
+function colorBricks() {
+    for (var i = 0; i < bricks.length; i++) {
+        if (bricks[i].durability == 1) {
+            bricks[i].color = "red";
+        }
+        if (bricks[i].durability == 2) {
+            bricks[i].color = "orange";
+        }
+        if (bricks[i].durability == 3) {
+            bricks[i].color = "yellow";
+        }
+    }
+}
 //fin de la génération des briques
 
 
@@ -86,6 +101,7 @@ function renderBricks() {
     for (var i = 0; i < bricks.length; i++) {
         ctx.fillStyle = bricks[i].color;
         ctx.fillRect(bricks[i].x, bricks[i].y, bricks[i].width, bricks[i].height);
+        colorBricks();
     }
 }
 
@@ -116,14 +132,12 @@ function checkBordersCollision() {
     }
 }
 
-
 function checkBrickCollision() { //on check la collision avec les briques
     for (var i = 0; i < bricks.length; i++) {
         if ((ball.x > bricks[i].x) && (ball.x < bricks[i].x + bricks[i].width )&& (ball.y > bricks[i].y )&& (ball.y < bricks[i].y + bricks[i].height)) {
             ball.speedY = -ball.speedY;
             //on diminue la durabilité de la brique
-            bricks[i].durability -= 1;
-            bricks[i].color = "red";    
+            bricks[i].durability -= 1;   
             //si la durabilité est à 0, on la supprime
             if (bricks[i].durability == 0) {
             bricks.splice(i, 1);
@@ -173,8 +187,6 @@ function render() {
     renderBricks();
 }
 
-const paddleSpeed = 5; // pixels per second
-
 function updatePad(dt) {
     dt= dt*100;
     if (rightPressed) {
@@ -201,6 +213,7 @@ function fixedUpdate() {
 }
 
 function start() {
+    colorBricks();
     lastTime = Date.now();
     requestAnimationFrame(fixedUpdate);
 }
