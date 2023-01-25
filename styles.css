@@ -6,3 +6,16 @@
     background-color: #000;
     border: #000 1px solid;
 }
+.breakoutGame{
+    display: inline-block;
+    height: 900px;
+    width: 800px;
+    position: relative;
+    left: 30%;
+}
+.difficultyContainer{
+    background-color: #000;
+    border: #000 1px solid;
+}
+    
+

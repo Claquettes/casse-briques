@@ -206,6 +206,22 @@ function fixedUpdate() {
     lastTime = currentTime;
     requestAnimationFrame(fixedUpdate);
 }
+function Level1() {
+    bricks = Level1();
+    colorBricks();
+    lastTime = Date.now();
+    requestAnimationFrame(fixedUpdate);
+}
+
+//si le boutton level 1 est cliqué, on lance le niveau 1
+if (document.getElementById("level1")) {
+    document.getElementById("level1").addEventListener("click", function() {
+        Level1();
+    });
+}
+
+
+
 
 function start() {
     bricks = Level0();
@@ -215,3 +231,4 @@ function start() {
 }
 
 start();
+
