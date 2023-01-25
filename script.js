@@ -28,12 +28,14 @@ var paddle = {
     color: "white"
 };
 
-//génération des briques
+var bricks = [];
+
+/*génération des briques
 var rows = 5;
 var columns = 13;
 var brickWidth = 50;
 var brickHeight = 20;
-var bricks = [];
+
 
 for (var r = 0; r < rows; r++) {
     for (var c = 0; c < columns; c++) {
@@ -48,8 +50,8 @@ for (var r = 0; r < rows; r++) {
             });
     }
 }
-//fin de la génération des briques
- 
+*/
+
 function colorBricks() {
     for (var i = 0; i < bricks.length; i++) {
         if (bricks[i].durability == 1) {
@@ -206,6 +208,7 @@ function fixedUpdate() {
 }
 
 function start() {
+    bricks = Level0();
     colorBricks();
     lastTime = Date.now();
     requestAnimationFrame(fixedUpdate);
