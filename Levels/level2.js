@@ -1,3 +1,9 @@
+function Level2(){
+var rows = 5;
+var columns = 13;
+var brickWidth = 50;
+var brickHeight = 20;
+var bricks = [];
 for (var r = 0; r < rows; r++) {
     for (var c = 0; c < columns; c++) {
         if (r == c || c == r || r+4 == c || r+8 == c) { //il faudrait que le code soit plus clean, mais je n'ai pas le temps de le faire
@@ -26,5 +32,5 @@ for (var r = 0; r < rows; r++) {
         
     }
 }
-
-// diagonals
+return bricks;// diagonals
+}

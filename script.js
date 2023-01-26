@@ -112,7 +112,7 @@ function checkPaddleCollision() {
         ball.speedY = -ball.speedY;
         var paddleCenter = paddle.x + paddle.width / 2;
         var ballDistFromPaddleCenter = ball.x - paddleCenter;
-        ball.speedX = ballDistFromPaddleCenter * 0.15;
+        ball.speedX = ballDistFromPaddleCenter * 0.15 + 0.5;
     }
 }
 
@@ -206,29 +206,36 @@ function fixedUpdate() {
     lastTime = currentTime;
     requestAnimationFrame(fixedUpdate);
 }
-function Level1() {
+
+
+function start() {
     bricks = Level1();
     colorBricks();
     lastTime = Date.now();
     requestAnimationFrame(fixedUpdate);
 }
 
-//si le boutton level 1 est cliqué, on lance le niveau 1
-if (document.getElementById("level1")) {
-    document.getElementById("level1").addEventListener("click", function() {
-        Level1();
-    });
+var hide = localStorage.getItem('currChoice') || 0;
+if (hide == 1){
+document.getElementById('floatingBox').style.display = "none";
+localStorage.clear();
+}
+
+function gbpClick(){
+var currChoice = 1;
+localStorage.setItem('currChoice', currChoice);
+location.href='/?level=1';
+}
+
+function usdClick(){
+var currChoice = 1;
+localStorage.setItem('currChoice', currChoice);
+location.href='/?level=1';
 }
 
 
 
 
-function start() {
-    bricks = Level0();
-    colorBricks();
-    lastTime = Date.now();
-    requestAnimationFrame(fixedUpdate);
-}
 
 start();
 

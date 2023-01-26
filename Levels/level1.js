@@ -1,3 +1,4 @@
+function Level1(){
 var rows = 5;
 var columns = 13;
 var brickWidth = 50;
@@ -31,3 +32,7 @@ for (var r = 0; r < rows; r++) {
         
     }
 }
+return bricks;
+}
+
+
