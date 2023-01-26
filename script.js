@@ -209,7 +209,7 @@ function fixedUpdate() {
 
 
 function start() {
-    bricks = Level1();
+    checkURLParams();
     colorBricks();
     lastTime = Date.now();
     requestAnimationFrame(fixedUpdate);
@@ -231,6 +231,19 @@ function usdClick(){
 var currChoice = 1;
 localStorage.setItem('currChoice', currChoice);
 location.href='/?level=1';
+}
+
+
+function checkURLParams() {
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var level = url.searchParams.get("level");
+    if (level == 1) {
+        bricks = Level1();
+    }
+    if (level == 2) {
+        bricks = Level2();
+    }
 }
 
 
