@@ -3,12 +3,14 @@ document.addEventListener("keyup", keyUpHandler, false);
 
 var canvas = document.getElementById("game");
 var ctx = canvas.getContext("2d");
+
+
 //VARIABLES
 var rightPressed = false;
 var leftPressed = false;
 const paddleSpeed = 5; // pixels per second
 var lastTime;
-var timeStep = 1000/60; // 60fps
+var timeStep = 1000/40; // 60fps
 var maxSpeed = 200;
 
 var ball = {
@@ -17,7 +19,7 @@ var ball = {
     radius: 10,
     speedX: 2.5,
     speedY: 2.5,
-    color: "blue"
+    color: "white"
 };
 
 var paddle = {
@@ -33,13 +35,13 @@ var bricks = [];
 function colorBricks() {
     for (var i = 0; i < bricks.length; i++) {
         if (bricks[i].durability == 1) {
-            bricks[i].color = "red";
+            bricks[i].color = "rgb(255, 255, 255)"; //white
         }
         if (bricks[i].durability == 2) {
-            bricks[i].color = "orange";
+            bricks[i].color = "rgb(192, 192, 192)"; //light grey
         }
         if (bricks[i].durability == 3) {
-            bricks[i].color = "yellow";
+            bricks[i].color = "rgb(103, 100, 106)"; //dark grey
         }
     }
 }
@@ -78,6 +80,7 @@ function update(dt) {
     updatePad(dt);
 }
 function render() {
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     renderBall();
     renderPaddle();
