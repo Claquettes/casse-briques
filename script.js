@@ -30,28 +30,6 @@ var paddle = {
 
 var bricks = [];
 
-/*génération des briques
-var rows = 5;
-var columns = 13;
-var brickWidth = 50;
-var brickHeight = 20;
-
-
-for (var r = 0; r < rows; r++) {
-    for (var c = 0; c < columns; c++) {
-            bricks.push({
-                color: "red",
-                x: c * (brickWidth + 10) + 10,
-                y: r * (brickHeight + 10) + 50,
-                width: brickWidth,
-                height: brickHeight,
-                visible: true,
-                durability: Math.floor(Math.random() * 3) + 1
-            });
-    }
-}
-*/
-
 function colorBricks() {
     for (var i = 0; i < bricks.length; i++) {
         if (bricks[i].durability == 1) {
@@ -65,7 +43,7 @@ function colorBricks() {
         }
     }
 }
-//fin de la génération des briques
+
 function keyDownHandler(e) {
     if (e.keyCode == 39) {
         rightPressed = true;
@@ -215,12 +193,6 @@ function start() {
     requestAnimationFrame(fixedUpdate);
 }
 
-var hide = localStorage.getItem('currChoice') || 0;
-if (hide == 1){
-document.getElementById('floatingBox').style.display = "none";
-localStorage.clear();
-}
-
 function gbpClick(){
 var currChoice = 1;
 localStorage.setItem('currChoice', currChoice);
@@ -243,6 +215,21 @@ function checkURLParams() {
     }
     if (level == 2) {
         bricks = Level2();
+    }
+    if (level == 3) {
+        bricks = Level3();
+    }
+    if (level == 4) {
+        bricks = Level4();
+    }
+    if (level == 5) {
+        bricks = Level5();
+    }
+    if (level == 6) {
+        bricks = Level6();
+    }
+    else {
+        bricks = Level0();
     }
 }
 
