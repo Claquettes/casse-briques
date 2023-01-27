@@ -106,45 +106,11 @@ function start() {
     requestAnimationFrame(fixedUpdate);
 }
 
-function gbpClick(){
-var currChoice = 1;
-localStorage.setItem('currChoice', currChoice);
-location.href='/?level=1';
-}
-
-function usdClick(){
-var currChoice = 1;
-localStorage.setItem('currChoice', currChoice);
-location.href='/?level=1';
-}
-
-
 function checkURLParams() {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var level = url.searchParams.get("level");
     console.log(level);
-
-    /* if (level == 1) {
-        bricks = Level1();
-    }
-    if (level == 2) {
-        bricks = Level2();
-    }
-    if (level == 3) {
-        bricks = Level3();
-    }
-    if (level == 4) {
-        bricks = Level4();
-    }
-    if (level == 5) {
-        bricks = Level5();
-    }
-    else {
-        console.log("no level");
-        bricks = Level2();
-    }
-    */
     if (level == 1) {
         bricks = Level1();
     }
@@ -161,5 +127,4 @@ function checkURLParams() {
         bricks = Level5();
     }
 }
-
 start();
