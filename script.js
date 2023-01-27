@@ -99,6 +99,7 @@ function fixedUpdate() {
 
 
 function start() {
+    bricks = Level2();
     checkURLParams();
     colorBricks();
     lastTime = Date.now();
@@ -122,7 +123,9 @@ function checkURLParams() {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var level = url.searchParams.get("level");
-    if (level == 1) {
+    console.log(level);
+
+    /* if (level == 1) {
         bricks = Level1();
     }
     if (level == 2) {
@@ -137,11 +140,25 @@ function checkURLParams() {
     if (level == 5) {
         bricks = Level5();
     }
-    if (level == 6) {
-        bricks = Level6();
-    }
     else {
-        bricks = Level0();
+        console.log("no level");
+        bricks = Level2();
+    }
+    */
+    if (level == 1) {
+        bricks = Level1();
+    }
+    if (level == 2) {
+        bricks = Level2();
+    }
+    if (level == 3) {
+        bricks = Level3();
+    }
+    if (level == 4) {
+        bricks = Level4();
+    }
+    if (level == 5) {
+        bricks = Level5();
     }
 }
 
