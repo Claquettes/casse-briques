@@ -11,7 +11,7 @@ var leftPressed = false;
 const paddleSpeed = 5; // pixels per second
 var lastTime;
 var timeStep = 1000/40; // 60fps
-var maxSpeed = 200;
+var maxSpeed = 10;
 
 var ball = {
     x: canvas.width / 2,
@@ -80,7 +80,7 @@ function update(dt) {
     updatePad(dt);
 }
 function render() {
-    
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     renderBall();
     renderPaddle();
