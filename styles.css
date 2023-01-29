@@ -1,5 +1,9 @@
+body{
+    background-color: #000;
+}
+
 #game{
-    margin-top: 10%;
+    margin-top: 1%;
     background-color: rgb(0, 1, 16, 0);
     border: rgb(255, 255, 255) 6px solid;
 }
@@ -7,21 +11,83 @@
 .breakoutGame{
     display: inline-block;
     height: 900px;
-    width: 800px;
+    width: 812px;
     position: relative;
     left: 30%;
 }
 
-.difficultyContainer{
-    color: aqua;
-    background-color: #000;
-    border: #000 1px solid;
+.containerLevelSelector{
+    width: 812px;
+    margin-top: 1%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-body{
-    background-color: #000;
+.zero{
+    margin-bottom: 1%;
+    margin-right: 82px; /* 82px d'espace, a appliquer sur les box de numéro pair*/
+    display: inline-block;
+    width: 350px;
+    height: 69px;
+    background-image: url("assets/level0.png");
+    background-size: cover;
+    border: rgb(255, 255, 255) 6px solid;
+
 }
 
+.one{
+    margin-bottom: 1%;
+    display: inline-block;
+    width: 350px;
+    height: 69px;
+    background-image: url("assets/level0.png");
+    background-size: cover;
+    border: rgb(255, 255, 255) 6px solid;
+}
 
-    
+.two{
+    margin-bottom: 1%;
+    margin-right: 82px;
+    display: inline-block;
+    width: 350px;
+    height: 69px;
+    background-image: url("assets/level0.png");
+    background-size: cover;
+    border: rgb(255, 255, 255) 6px solid;
+}
 
+.three{
+    margin-bottom: 1%;
+    display: inline-block;
+    width: 350px;
+    height: 69px;
+    background-image: url("assets/level0.png");
+    background-size: cover;
+    border: rgb(255, 255, 255) 6px solid;
+}
+
+.four{
+    margin-bottom: 1%;
+    margin-right: 82px;
+    display: inline-block;  
+    width: 350px;
+    height: 69px;
+    background-image: url("assets/level0.png");
+    background-size: cover;
+    border: rgb(255, 255, 255) 6px solid;
+}
+
+.five{
+    margin-bottom: 1%;
+    display: inline-block;
+    width: 350px;
+    height: 69px;
+    background-image: url("assets/level0.png");
+    background-size: cover;
+    border: rgb(255, 255, 255) 6px solid;
+}
+
+.bottomText{
+    text-align: center;
+    background-color: rgb(0, 1, 16, 0);
+}

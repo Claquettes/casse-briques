@@ -6,7 +6,7 @@ var brickHeight = 20;
 var bricks = [];
 for (var r = 0; r < rows; r++) {
     for (var c = 0; c < columns; c++) {
-        if (r == c || c == r || r+4 == c || r+8 == c) { //il faudrait que le code soit plus clean, mais je n'ai pas le temps de le faire
+        if (r == c || c == r || r+2 == c || r+6 == c|| r+8 == c) { //il faudrait que le code soit plus clean, mais je n'ai pas le temps de le faire
             bricks.push({
                 color: "red",
                 x: c * (brickWidth + 10) + 10,
@@ -15,6 +15,17 @@ for (var r = 0; r < rows; r++) {
                 height: brickHeight,
                 visible: true,
                 durability: 3
+            });
+        }
+        else if (r == c || c == r || r+1 == c || r+7 == c) { //il faudrait que le code soit plus clean, mais je n'ai pas le temps de le faire
+            bricks.push({
+                color: "red",
+                x: c * (brickWidth + 10) + 10,
+                y: r * (brickHeight + 10) + 50,
+                width: brickWidth,
+                height: brickHeight,
+                visible: true,
+                durability: 2
             });
         }
 

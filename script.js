@@ -10,7 +10,7 @@ var rightPressed = false;
 var leftPressed = false;
 const paddleSpeed = 5; // pixels per second
 var lastTime;
-var timeStep = 1000/40; // 60fps
+var timeStep = 1000/60; // 60fps
 var maxSpeed = 10;
 
 var ball = {
@@ -66,7 +66,7 @@ function keyUpHandler(e) {
 
 function checkGameOver() {
     if (ball.y - ball.radius > canvas.height) {
-        alert("Game Over!");
+        //alert("Game Over!");
         // a remplacer par un bouton restart
     }
 }
@@ -102,7 +102,7 @@ function fixedUpdate() {
 
 
 function start() {
-    bricks = Level2();
+    bricks = Level0();
     checkURLParams();
     colorBricks();
     lastTime = Date.now();
