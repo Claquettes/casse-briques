@@ -87,6 +87,33 @@ body{
     border: rgb(255, 255, 255) 6px solid;
 }
 
+
+.zero:hover{
+    transform: scale(1.02);
+}
+
+.one:hover{
+    transform: scale(1.02);
+}
+
+.two:hover{
+    transform: scale(1.02);
+}
+
+.three:hover{
+    transform: scale(1.02);
+}
+
+.four:hover{
+    transform: scale(1.02);
+}
+
+.five:hover{
+    transform: scale(1.02);
+}
+
+
+
 .bottomText{
     text-align: center;
     background-color: rgb(0, 1, 16, 0);
