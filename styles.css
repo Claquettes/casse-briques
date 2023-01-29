@@ -40,7 +40,7 @@ body{
     display: inline-block;
     width: 350px;
     height: 69px;
-    background-image: url("assets/level0.png");
+    background-image: url("assets/level1.png");
     background-size: cover;
     border: rgb(255, 255, 255) 6px solid;
 }
@@ -51,7 +51,7 @@ body{
     display: inline-block;
     width: 350px;
     height: 69px;
-    background-image: url("assets/level0.png");
+    background-image: url("assets/level2.png");
     background-size: cover;
     border: rgb(255, 255, 255) 6px solid;
 }
@@ -61,7 +61,7 @@ body{
     display: inline-block;
     width: 350px;
     height: 69px;
-    background-image: url("assets/level0.png");
+    background-image: url("assets/level3.png");
     background-size: cover;
     border: rgb(255, 255, 255) 6px solid;
 }
@@ -72,7 +72,7 @@ body{
     display: inline-block;  
     width: 350px;
     height: 69px;
-    background-image: url("assets/level0.png");
+    background-image: url("assets/level4.png");
     background-size: cover;
     border: rgb(255, 255, 255) 6px solid;
 }
@@ -82,7 +82,7 @@ body{
     display: inline-block;
     width: 350px;
     height: 69px;
-    background-image: url("assets/level0.png");
+    background-image: url("assets/level5.png");
     background-size: cover;
     border: rgb(255, 255, 255) 6px solid;
 }

@@ -66,7 +66,7 @@ function keyUpHandler(e) {
 
 function checkGameOver() {
     if (ball.y - ball.radius > canvas.height) {
-        //alert("Game Over!");
+        alert("Game Over!");
         // a remplacer par un bouton restart
     }
 }
