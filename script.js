@@ -114,6 +114,9 @@ function checkURLParams() {
     var url = new URL(url_string);
     var level = url.searchParams.get("level");
     console.log(level);
+    if (level == 0) {
+        bricks = Level0();
+    }
     if (level == 1) {
         bricks = Level1();
     }
