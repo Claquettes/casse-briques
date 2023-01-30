@@ -113,10 +113,11 @@ function start() {
              requestAnimationFrame(fixedUpdate);
         }
     });     
-    //on affiche un message d'attente
-    ctx.font = "30px Arial";
+    //on affiche un message d'attente, en attendant que le joueur appuie sur espace, en utilisant le canvas et la police qui est dans le dossier assets
+    ctx.font = "30px 'Press Start 2P'";
     ctx.fillStyle = "white";
-    ctx.fillText("Press space to start", 100, 200);
+    ctx.fillText("Press space to start", 250, 300);
+
                                    
 }
 
