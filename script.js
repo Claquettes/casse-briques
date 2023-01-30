@@ -105,8 +105,19 @@ function start() {
     bricks = Level0();
     checkURLParams();
     colorBricks();
-    lastTime = Date.now();
-    requestAnimationFrame(fixedUpdate);
+    //on attends que le joueur appuie sur espace pour lancer le jeu
+    document.addEventListener("keydown", function (e) {
+        if (e.keyCode == 32) {
+            
+            lastTime = Date.now();
+             requestAnimationFrame(fixedUpdate);
+        }
+    });     
+    //on affiche un message d'attente
+    ctx.font = "30px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("Press space to start", 100, 200);
+                                   
 }
 
 function checkURLParams() {
