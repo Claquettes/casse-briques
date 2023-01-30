@@ -17,8 +17,9 @@ var ball = {
     x: canvas.width / 2,
     y: canvas.height / 2,
     radius: 10,
-    speedX: 2.5,
-    speedY: 2.5,
+    //on donne une vitesse initiale à la balle, aléatoire et entre 2 et 4
+    speedX: Math.floor(Math.random() * 3) + 2,
+    speedY: Math.floor(Math.random() * 3) + 2,  
     color: "white"
 };
 
@@ -116,7 +117,7 @@ function start() {
     //on affiche un message d'attente, en attendant que le joueur appuie sur espace, en utilisant le canvas et la police qui est dans le dossier assets
     ctx.font = "30px 'Press Start 2P'";
     ctx.fillStyle = "white";
-    ctx.fillText("Press space to start", 250, 300);
+    ctx.fillText("Press space to start", 100, 300);
 
                                    
 }
